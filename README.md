@@ -46,7 +46,7 @@ After the instances are all setup, you can go forward and finally run the cluste
 ./publish_docker.sh all
 ```
 
-#Additional Resources:
+### Additional Resources:
 
 [1] M. Luthra, B. Koldehofe, R. Arif, P. Weisenburger, G. Salvaneschi, TCEP: Adapting to Dynamic User Environments by Enabling Transitions between Operator Placement Mechanisms. In the Proceedings of 12th ACM International Conference on Distributed and Event-based Systems (DEBS) 2018
 https://dl.acm.org/citation.cfm?id=3210292
