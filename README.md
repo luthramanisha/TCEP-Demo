@@ -3,7 +3,7 @@
 ## Running on GENI
 
 GENI provides a large-scale experiment infrastructure where users can obtain computing instances throughout the United States to perform network experiments.
-TransitiveCEP includes useful scripts to enable easier simulations on GENI which are described below.
+TCEP includes useful scripts to enable easier simulations on GENI which are described below.
 
 ```
 cd scripts/
