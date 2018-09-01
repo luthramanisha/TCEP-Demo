@@ -28,8 +28,8 @@ This will convert the manifest and will print out the IP addresses of the starte
 You should see an output like this
 
 ```
-manager=72.36.65.68
-workers=("72.36.65.69" "72.36.65.70")
+manager=xx.xx.xx.xx
+workers=("xx.xx.xx.xx" "xx.xx.xx.xx")
 ```
 
 Now the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
