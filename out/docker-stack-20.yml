@@ -1,0 +1,460 @@
+# You can set the hostname of docker host by using this command `sudo hostname <name>`
+version: "3"
+services:
+
+  nserver:
+    image: cloudwattfr/ntpserver:latest
+    ports:
+      - 2200:2200
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster0]
+    privileged: true
+
+  viv:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.VivaldiApp
+      - ARGS=--port 2549 --ip viv
+    depends_on:
+      - nserver
+    ports:
+      - 2549:2549
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster0]
+    privileged: true
+
+  simulator:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.simulation.transitivecep.SimulationRunner
+      - ARGS= ./logs 4 simulator 2202
+    depends_on:
+       - viv
+    volumes:
+       - $HOME/logs:/app/logs
+    ports:
+       - 2202:2202
+    networks:
+       - main
+    deploy:
+      replicas: 1
+      restart_policy:
+         condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster0]
+    privileged: true
+
+  DoorSensor:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.PublisherApp
+      - ARGS=--port 3300 --name DoorSensor --ip DoorSensor
+    depends_on:
+      - viv
+    ports:
+      - 3300:3300
+    volumes:
+      - $HOME/logs:/app/logs
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster1]
+    privileged: true
+
+  SanitizerSensor:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.PublisherApp
+      - ARGS=--port 3301 --name SanitizerSensor --ip SanitizerSensor
+    depends_on:
+      - viv
+    ports:
+      - 3301:3301
+    volumes:
+      - $HOME/logs:/app/logs
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster2]
+    privileged: true
+
+  app3:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3303 --ip app3
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3303:3303
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster3]
+    privileged: true
+
+  app4:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3304 --ip app4
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3304:3304
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster4]
+    privileged: true
+
+  app5:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3305 --ip app5
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3305:3305
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster5]
+    privileged: true
+
+  app6:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3306 --ip app6
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3306:3306
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster6]
+    privileged: true
+
+  app7:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3307 --ip app7
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3307:3307
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster7]
+    privileged: true
+
+  app8:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3308 --ip app8
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3308:3308
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster8]
+    privileged: true
+
+  app9:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3309 --ip app9
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3309:3309
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster9]
+    privileged: true
+
+  app10:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3310 --ip app10
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3310:3310
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster10]
+    privileged: true
+
+  app11:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3311 --ip app11
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3311:3311
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster11]
+    privileged: true
+
+  app12:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3312 --ip app12
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3312:3312
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster12]
+    privileged: true
+
+  app13:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3313 --ip app13
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3313:3313
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster13]
+    privileged: true
+
+  app14:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3314 --ip app14
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3314:3314
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster14]
+    privileged: true
+
+  app15:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3315 --ip app15
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3315:3315
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster15]
+    privileged: true
+
+  app16:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3316 --ip app16
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3316:3316
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster16]
+    privileged: true
+
+  app17:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3317 --ip app17
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3317:3317
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster17]
+    privileged: true
+
+  app18:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3318 --ip app18
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3318:3318
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster18]
+    privileged: true
+
+  app19:
+    image: ocastx/transitivecep
+    environment:
+      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - ARGS=--port 3319 --ip app19
+    depends_on:
+      - viv
+    volumes:
+      - $HOME/logs:/app/logs
+    ports:
+      - 3319:3319
+    networks:
+      - main
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.hostname == cluster19]
+    privileged: true
+
+
+networks:
+  main:
