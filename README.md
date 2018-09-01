@@ -56,6 +56,7 @@ http://ieeexplore.ieee.org/document/7968142/
 
 ### Credits
 Design and Concepts: [@luthramanisha](https://github.com/luthramanisha/)
+
 Implementation: [@rarif](https://github.com/raq154), Sebastian Hennig, [@luthramanisha](https://github.com/luthramanisha/)
 
 TCEP is build upon AdaptiveCEP language that can be found [here](https://github.com/pweisenburger/AdaptiveCEP). 
