@@ -54,7 +54,9 @@ https://dl.acm.org/citation.cfm?id=3210292
 [2] P. Weisenburger, M. Luthra, B. Koldehofe, G. Salvaneschi: Quality-aware Runtime Adaptation in Complex Event Processing. In 2017 IEEE/ACM 12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS) 2017
 http://ieeexplore.ieee.org/document/7968142/
 
-[3] [GENI: an open infrastructure for at-scale networking and distributed systems](https://www.geni.net/)
+[3] [TCEP: Docker Image](TODO: define link to the docker hub mluthra/tcep)
+
+[4] [GENI: an open infrastructure for at-scale networking and distributed systems](https://www.geni.net/)
 
 ### Credits
 Design and Concepts: [@luthramanisha](https://github.com/luthramanisha/)
