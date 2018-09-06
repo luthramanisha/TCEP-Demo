@@ -15,7 +15,7 @@ First, a so called RSpec XML file is needed in order to get a GENI cluster up an
 python generate_geni_rspec.py {number-of-nodes} {out-directory}
 ```
 
-This will generate the rspec.xml file with the at "out-directory" with the specified number of nodes. Furthermore, this also generate the Docker swarm file with the correct amount of empty apps running on the GENI hosts.
+This will generate the "rspec.xml" file at "out-directory" with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts.
 
 After you deployed the RSpec on GENI, you can download a Manifest XML file which contains information of the hosts that GENI deployed. This is useful because GENI automatically generates IP addresses for the hosts and if you created a cluster with a high amount of nodes the search for this IP addresses can be a heavy overhead.
 After downloading the manifest file you can run the following command to extract the IP addresses out of it and print out the config that can be put into the "docker-swarm.cfg" file:
@@ -24,15 +24,14 @@ After downloading the manifest file you can run the following command to extract
 python manifest_to_config.py {manifest-path}
 ```
 
-This will convert the manifest and will print out the IP addresses of the started hosts in the config format for the docker deploy script.
-You should see an output like this
+This will convert the manifest and will print out the IP addresses of the started hosts in the config format for the docker deploy script. You should be able to see the IP addresses in docker-swarm.cfg in the following format: 
 
 ```
 manager=xx.xx.xx.xx
 workers=("xx.xx.xx.xx" "xx.xx.xx.xx")
 ```
 
-Now the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
+Now since the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
 
 ```
 ./publish_docker.sh setup
@@ -62,6 +61,6 @@ http://ieeexplore.ieee.org/document/7968142/
 ### Credits
 Design and Concepts: [@luthramanisha](https://github.com/luthramanisha/)
 
-Implementation: [@rarif](https://github.com/raq154), Sebastian Hennig, [@luthramanisha](https://github.com/luthramanisha/)
+Implementation: [@rarif](https://github.com/raq154), [@shennig](https://github.com/ocastx), [@luthramanisha](https://github.com/luthramanisha/)
 
 TCEP is build upon AdaptiveCEP language [2] that can be found [here](https://github.com/pweisenburger/AdaptiveCEP). 
