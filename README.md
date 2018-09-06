@@ -3,7 +3,7 @@
 ## Running on GENI
 
 GENI provides a large-scale experiment infrastructure where users can obtain computing instances throughout the United States to perform network experiments [4].
-We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which are described below.
+We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which are described below. 
 
 ```
 cd scripts/
@@ -45,6 +45,7 @@ After the instances are all setup, you can go forward and finally run the cluste
 ```
 ./publish_docker.sh all
 ```
+PS: Although focus of this demo is to show the capabilities of TCEP, however, user can modify the scripts to run any kind of application on top of Docker on GENI.
 
 ### References:
 
