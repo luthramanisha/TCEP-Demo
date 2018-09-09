@@ -56,10 +56,10 @@ PS: Although focus of this demo is to show the capabilities of TCEP, however, us
 
 ### References:
 
-[1] M. Luthra, B. Koldehofe, R. Arif, P. Weisenburger, G. Salvaneschi, TCEP: Adapting to Dynamic User Environments by Enabling Transitions between Operator Placement Mechanisms. In the Proceedings of 12th ACM International Conference on Distributed and Event-based Systems (DEBS) 2018
+[1] M. Luthra, B. Koldehofe, R. Arif, P. Weisenburger, G. Salvaneschi. TCEP: Adapting to Dynamic User Environments by Enabling Transitions between Operator Placement Mechanisms. In the Proceedings of 12th ACM International Conference on Distributed and Event-based Systems (DEBS) 2018
 https://dl.acm.org/citation.cfm?id=3210292
 
-[2] P. Weisenburger, M. Luthra, B. Koldehofe, G. Salvaneschi: Quality-aware Runtime Adaptation in Complex Event Processing. In 2017 IEEE/ACM 12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS) 2017
+[2] P. Weisenburger, M. Luthra, B. Koldehofe, G. Salvaneschi. Quality-aware Runtime Adaptation in Complex Event Processing. In 2017 IEEE/ACM 12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS) 2017
 http://ieeexplore.ieee.org/document/7968142/
 
 [3] [TCEP: Docker Image](https://hub.docker.com/r/mluthra/tcep/)
