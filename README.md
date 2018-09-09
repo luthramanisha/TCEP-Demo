@@ -1,8 +1,8 @@
 # TCEP Demonstrator
 
 ## TCEP Background Information
-TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system. In this project we: 
-* provide key interfaces to develop Operator Placement that is a prominent mechanism in CEP. 
+TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project we: 
+* provide key interfaces to develop Operator Placement that is a prominent mechanism in CEP [2]. 
 * allow dynamic exchange of Operator Placement algorithms using **transition** methodology, depending suiting the needs of the end-user, and 
 * allow operator deployment on a wide-range of network infrastructure by providing key APIs to integrate with Docker.
 
