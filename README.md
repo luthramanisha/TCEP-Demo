@@ -2,8 +2,8 @@
 
 [![License](https://img.shields.io/github/license/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
 [![Issues](https://img.shields.io/github/issues/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
-[![hitCount](http://hits.dwyl.io/luthramanisha/TCEP-Demo.svg)](http://hits.dwyl.io/luthramanisha/TCEP-Demo)
 [![Pulls](https://shields.beevelop.com/docker/pulls/tcep/shields.svg?style=flat-square)](https://hub.docker.com/r/mluthra/tcep/)
+[![hitCount](http://hits.dwyl.io/luthramanisha/TCEP-Demo.svg)](http://hits.dwyl.io/luthramanisha/TCEP-Demo)
 
 ## TCEP Background Information
 TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project, we: 
