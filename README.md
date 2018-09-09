@@ -47,7 +47,7 @@ Now since the hosts are successfully deployed on GENI and the project is ready t
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
 
-After the instances are all setup, you can go forward and finally run the cluster on the hosts by executing the following command
+After the instances are all setup, you can go forward and finally run TCEP docker image [4] on the hosts by executing the following command
 
 ```
 ./publish_docker.sh all
