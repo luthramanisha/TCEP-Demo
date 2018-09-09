@@ -1,5 +1,7 @@
 # TCEP Demonstrator
 
+[![license](https://img.shields.io/github/license/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
+
 ## TCEP Background Information
 TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project, we: 
 * provide key interfaces to develop Operator Placement that is a prominent mechanism in CEP [2]. 
