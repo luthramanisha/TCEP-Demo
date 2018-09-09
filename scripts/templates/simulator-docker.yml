@@ -2,7 +2,7 @@
   {{name}}:
     image: {{image}}
     environment:
-      - MAIN=adaptivecep.simulation.transitivecep.SimulationRunner
+      - MAIN=tcep.simulation.tcep.SimulationRunner
       - ARGS= ./logs 4 {{name}} {{inport}}
     depends_on:
        - {{vivaldicontainer}}

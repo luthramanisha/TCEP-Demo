@@ -2,7 +2,7 @@
   {{name}}:
     image: {{image}}
     environment:
-      - MAIN=adaptivecep.machinenodes.PublisherApp
+      - MAIN=tcep.machinenodes.PublisherApp
       - ARGS=--port {{inport}} --name {{name}} --ip {{name}}
     depends_on:
       - viv

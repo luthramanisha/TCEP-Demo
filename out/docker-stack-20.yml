@@ -17,9 +17,9 @@ services:
     privileged: true
 
   viv:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.VivaldiApp
+      - MAIN=tcep.machinenodes.VivaldiApp
       - ARGS=--port 2549 --ip viv
     depends_on:
       - nserver
@@ -36,9 +36,9 @@ services:
     privileged: true
 
   simulator:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.simulation.transitivecep.SimulationRunner
+      - MAIN=tcep.simulation.tcep.SimulationRunner
       - ARGS= ./logs 4 simulator 2202
     depends_on:
        - viv
@@ -57,9 +57,9 @@ services:
     privileged: true
 
   DoorSensor:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.PublisherApp
+      - MAIN=tcep.machinenodes.PublisherApp
       - ARGS=--port 3300 --name DoorSensor --ip DoorSensor
     depends_on:
       - viv
@@ -78,9 +78,9 @@ services:
     privileged: true
 
   SanitizerSensor:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.PublisherApp
+      - MAIN=tcep.machinenodes.PublisherApp
       - ARGS=--port 3301 --name SanitizerSensor --ip SanitizerSensor
     depends_on:
       - viv
@@ -99,9 +99,9 @@ services:
     privileged: true
 
   app3:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3303 --ip app3
     depends_on:
       - viv
@@ -120,9 +120,9 @@ services:
     privileged: true
 
   app4:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3304 --ip app4
     depends_on:
       - viv
@@ -141,9 +141,9 @@ services:
     privileged: true
 
   app5:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3305 --ip app5
     depends_on:
       - viv
@@ -162,9 +162,9 @@ services:
     privileged: true
 
   app6:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3306 --ip app6
     depends_on:
       - viv
@@ -183,9 +183,9 @@ services:
     privileged: true
 
   app7:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3307 --ip app7
     depends_on:
       - viv
@@ -204,9 +204,9 @@ services:
     privileged: true
 
   app8:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3308 --ip app8
     depends_on:
       - viv
@@ -225,9 +225,9 @@ services:
     privileged: true
 
   app9:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3309 --ip app9
     depends_on:
       - viv
@@ -246,9 +246,9 @@ services:
     privileged: true
 
   app10:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3310 --ip app10
     depends_on:
       - viv
@@ -267,9 +267,9 @@ services:
     privileged: true
 
   app11:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3311 --ip app11
     depends_on:
       - viv
@@ -288,9 +288,9 @@ services:
     privileged: true
 
   app12:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3312 --ip app12
     depends_on:
       - viv
@@ -309,9 +309,9 @@ services:
     privileged: true
 
   app13:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3313 --ip app13
     depends_on:
       - viv
@@ -330,9 +330,9 @@ services:
     privileged: true
 
   app14:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3314 --ip app14
     depends_on:
       - viv
@@ -351,9 +351,9 @@ services:
     privileged: true
 
   app15:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3315 --ip app15
     depends_on:
       - viv
@@ -372,9 +372,9 @@ services:
     privileged: true
 
   app16:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3316 --ip app16
     depends_on:
       - viv
@@ -393,9 +393,9 @@ services:
     privileged: true
 
   app17:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3317 --ip app17
     depends_on:
       - viv
@@ -414,9 +414,9 @@ services:
     privileged: true
 
   app18:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3318 --ip app18
     depends_on:
       - viv
@@ -435,9 +435,9 @@ services:
     privileged: true
 
   app19:
-    image: ocastx/transitivecep
+    image: mluthra/tcep
     environment:
-      - MAIN=adaptivecep.machinenodes.EmptyApp
+      - MAIN=tcep.machinenodes.EmptyApp
       - ARGS=--port 3319 --ip app19
     depends_on:
       - viv

@@ -1,14 +1,10 @@
 #!/usr/bin/python
-
-# File name: manifest_to_config.py
-# Author: Sebastian Hennig
-# Date created: 18.07.2018
-# Python Version: 2.7
 # Description: Parses the Manifest XML file downloaded from GENI and outputs
 # the hosts IP addresses in the config file format
 
 import sys
 import xml.etree.ElementTree
+import fileinput
 
 e = xml.etree.ElementTree.parse(sys.argv[1]).getroot()
 
@@ -30,6 +26,15 @@ for ip in ip_array:
 
 worker_str += ")"
 
-cfg = "\nmanager=" + manager_ip + "\n" + worker_str + "\n"
+cfg = "manager=" + manager_ip + "\n" + worker_str + "\n"
+replaced = False
 
-print(cfg)
+for line in fileinput.input("../docker-swarm.cfg", inplace=True):
+    if replaced != True and (line.startswith("workers=(") or line.startswith("manager=")):
+        print cfg.rstrip()
+        replaced = True
+        continue
+    elif replaced and (line.startswith("workers=(") or line.startswith("manager=")):
+        continue
+    else:
+        print line.rstrip()

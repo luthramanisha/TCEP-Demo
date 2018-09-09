@@ -1,9 +1,4 @@
 #!/usr/bin/python
-
-# File name: generate_distributed_files.py
-# Author: Sebastian Hennig
-# Date created: 18.07.2018
-# Python Version: 2.7
 # Description: Generates the RSpec and Docker Swarm files that are needed for execution of the simulation
 
 import sys
@@ -16,7 +11,7 @@ ntp_container = "nserver"
 viv_container = "viv"
 master_hostname = "cluster0"
 publisher_node_count = 2
-tcep_image = "ocastx/transitivecep"
+tcep_image = "mluthra/tcep"
 
 # Read GENI wrapper template
 template_file = open("templates/geni_rspec.xml", "r")

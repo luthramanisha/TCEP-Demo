@@ -2,7 +2,7 @@
   {{name}}:
     image: {{image}}
     environment:
-      - MAIN=adaptivecep.machinenodes.VivaldiApp
+      - MAIN=tcep.machinenodes.VivaldiApp
       - ARGS=--port {{inport}} --ip viv
     depends_on:
       - {{ntpcontainer}}
