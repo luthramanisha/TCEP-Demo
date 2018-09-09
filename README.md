@@ -6,7 +6,7 @@ TCEP: Transition-capable Complex Event Processing is a research project that pro
 * allow dynamic exchange of Operator Placement algorithms using *transition* methodology, depending on the needs of the end-user and environment 
 * allow operator deployment on a wide-range of network infrastructure by providing key APIs to integrate with Docker.
 
-In the following, we demonstrate how TCEP can be seamlessly evaluated on GENI aiding in understanding behavior of Operator Placement on large-scale network infrastructure. 
+In the following, we demonstrate how TCEP can be seamlessly evaluated on GENI [4] aiding in understanding behavior of Operator Placement on large-scale network infrastructure. 
 
 ## Running on GENI
 
