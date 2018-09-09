@@ -42,7 +42,7 @@ workers=("xx.xx.xx.xx" "xx.xx.xx.xx")
 Now since the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
 
 ```
-./publish_docker.sh setup
+./publish_tceo.sh setup
 ```
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
@@ -50,7 +50,7 @@ Note that you maybe have to enter `yes` in the console multiple times to allow S
 After the instances are all setup, you can go forward and finally run TCEP docker image [4] on the hosts by executing the following command
 
 ```
-./publish_docker.sh all
+./publish_tcep.sh all
 ```
 PS: Although focus of this demo is to show the capabilities of TCEP, however, user can modify the scripts to run any kind of application on top of Docker on GENI.
 
