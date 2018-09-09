@@ -42,7 +42,7 @@ workers=("xx.xx.xx.xx" "xx.xx.xx.xx")
 Now since the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
 
 ```
-./publish_tceo.sh setup
+./publish_tcep.sh setup
 ```
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
