@@ -29,9 +29,9 @@ First, a so called RSpec XML file is needed in order to get a GENI cluster up an
 python generate_geni_rspec.py {number-of-nodes} {out-directory}
 ```
 
-This will generate the `rspec.xml` file at `out-directory` with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts at the project root.
+This will generate the `rspec.xml` file at `out-directory` with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts at the project root. Refer `out/` directory to see the samples. 
 
-After you deployed the RSpec on GENI, you can download a Manifest XML file which contains information of the hosts that GENI deployed (View Rspec on the Jacks resources page). This is useful because GENI automatically generates IP addresses for the hosts and if you created a cluster with a high amount of nodes the search for this IP addresses can be a heavy overhead.
+After you deployed the RSpec on GENI, you can download a Manifest XML file which contains information of the hosts that GENI deployed (View Rspec on the Jacks resources page). This is useful because GENI automatically generates IP addresses for the hosts and if you created a cluster with a high amount of nodes the search for this IP addresses can be a heavy overhead. A holder for `manifest.xml` exists in `scripts/` folder, where you copy the configuration.
 After downloading the manifest file you can run the following command to extract the IP addresses out of it and generate the config `docker-swarm.cfg` file in the project root folder:
 
 ```
