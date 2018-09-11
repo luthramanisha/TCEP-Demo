@@ -2,10 +2,11 @@
 # Description: Parses the Manifest XML file downloaded from GENI and outputs
 # the hosts IP addresses in the config file format
 
+import os
 import sys
 import xml.etree.ElementTree
-import fileinput
 
+project_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
 e = xml.etree.ElementTree.parse(sys.argv[1]).getroot()
 
 manager_ip = ""
@@ -19,22 +20,18 @@ for child in e.findall('{http://www.geni.net/resources/rspec/3}node'):
         continue
     ip_array.append(child.find('{http://www.geni.net/resources/rspec/3}host').attrib['ipv4'])
 
-worker_str = "workers=("
-
+worker_str = "("
 for ip in ip_array:
     worker_str += "\"" + ip + "\" "
-
 worker_str += ")"
 
-cfg = "manager=" + manager_ip + "\n" + worker_str + "\n"
-replaced = False
+config_file = open(os.path.join(project_root, "scripts/templates/docker-swarm.cfg"), "r")
+config = config_file.read()
+config_file.close()
 
-for line in fileinput.input("../docker-swarm.cfg", inplace=True):
-    if replaced != True and (line.startswith("workers=(") or line.startswith("manager=")):
-        print cfg.rstrip()
-        replaced = True
-        continue
-    elif replaced and (line.startswith("workers=(") or line.startswith("manager=")):
-        continue
-    else:
-        print line.rstrip()
+config = config.replace("{{workers}}", worker_str).replace("{{manager}}", manager_ip)
+
+print(os.path.join(project_root, "docker-swarm.cfg"))
+config_file = open(os.path.join(project_root, "docker-swarm.cfg"), "w")
+config_file.write(config)
+config_file.close()

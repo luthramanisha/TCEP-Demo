@@ -1,8 +1,10 @@
 #!/usr/bin/python
-# Description: Generates the RSpec and Docker Swarm files that are needed for execution of the simulation
+# Description: Generates the RSpec and Docker Swarm file that are needed for execution of the simulation
 
 import sys
 import os
+
+project_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
 
 ####
 # CONSTANTS
@@ -14,13 +16,13 @@ publisher_node_count = 2
 tcep_image = "mluthra/tcep"
 
 # Read GENI wrapper template
-template_file = open("templates/geni_rspec.xml", "r")
+template_file = open(os.path.join(project_root, "scripts/templates/geni_rspec.xml"), "r")
 template = template_file.read()
 template_file.close()
 
 # Read GENI node template
 nodes = ""
-template_node_file = open("templates/rspec_node.xml", "r")
+template_node_file = open(os.path.join(project_root, "scripts/templates/rspec_node.xml"), "r")
 template_node = template_node_file.read()
 template_node_file.close()
 
@@ -39,12 +41,12 @@ out_file = open(sys.argv[2] + "/rspec-" + sys.argv[1] +  ".xml", "w")
 out_file.write(template)
 out_file.close()
 
-file = open("templates/docker-stack.yml", "r")
+file = open(os.path.join(project_root, "scripts/templates/docker-stack.yml"), "r")
 docker_stack = file.read()
 file.close()
 
 # NTP Server
-file = open("templates/ntpserver-docker.yml", "r")
+file = open(os.path.join(project_root, "scripts/templates/ntpserver-docker.yml"), "r")
 ntp_server = file.read()\
     .replace("{{name}}", ntp_container)\
     .replace("{{inport}}", "2200")\
@@ -53,7 +55,7 @@ ntp_server = file.read()\
 file.close()
 
 # Vivaldi node
-file = open("templates/vivaldi-docker.yml", "r")
+file = open(os.path.join(project_root, "scripts/templates/vivaldi-docker.yml"), "r")
 vivaldi_server = file.read()\
     .replace("{{name}}", viv_container)\
     .replace("{{ntpcontainer}}", ntp_container)\
@@ -64,7 +66,7 @@ vivaldi_server = file.read()\
 file.close()
 
 # Simulator node
-file = open("templates/simulator-docker.yml", "r")
+file = open(os.path.join(project_root, "scripts/templates/simulator-docker.yml"), "r")
 simulator_server = file.read()\
     .replace("{{name}}", "simulator")\
     .replace("{{vivaldicontainer}}", viv_container)\
@@ -75,12 +77,12 @@ simulator_server = file.read()\
 file.close()
 
 # Emptyapp node
-file = open("templates/emptyapp-docker.yml")
+file = open(os.path.join(project_root, "scripts/templates/emptyapp-docker.yml"))
 emptyapp_node = file.read()
 file.close()
 
 # Publisher node template
-file = open("templates/publisher-docker.yml")
+file = open(os.path.join(project_root, "scripts/templates/publisher-docker.yml"))
 publisher_node = file.read()
 file.close()
 
@@ -126,5 +128,12 @@ file = open(sys.argv[2] + "/docker-stack-" + sys.argv[1] +  ".yml", "w")
 file.write(docker_stack)
 file.close()
 
-
 print("Generated successfully at " + sys.argv[2] + " with image name\n\n" +tcep_image + "\n")
+
+file = open(os.path.join(project_root, "docker-stack.yml"), "w")
+file.write(docker_stack)
+file.close() 
+
+print("Copied to the projects root directory to be used for the experiment")
+
+
