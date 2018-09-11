@@ -14,6 +14,10 @@ TCEP: Transition-capable Complex Event Processing is a research project that pro
 In the following, we demonstrate how TCEP can be seamlessly evaluated on GENI [4] aiding in understanding behavior of Operator Placement on large-scale network infrastructure. 
 
 ## Running on GENI
+![TCEP on GENI workflow](/figures/Workflow.pdf)
+
+<img alt="TCEP on GENI workflow"
+src="/figures/Workflow.pdf" />
 
 GENI provides a large-scale experiment infrastructure where users can obtain computing instances throughout the United States to perform network experiments [4].
 We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which are described below. 
