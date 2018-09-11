@@ -1,4 +1,4 @@
-# You can set the hostname of docker host by using this command `sudo hostname <name>`
+# Example docker stack configuration automatically generated to deploy TCEP on GENI for 20 nodes #
 version: "3"
 services:
 
