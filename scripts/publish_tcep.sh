@@ -77,9 +77,6 @@ setup() {
 init_manager() {
     `ssh -T -p $port $user@$manager "sudo hostname cluster0"` 2> /dev/null
     `ssh -T -p $port $user@$manager "docker swarm init --advertise-addr $manager"` 2> /dev/null
-    # currently we are pushing jar file to all of the workers and building image locally on all of the workers
-    # in future we should use docker registry service to create image on manager and use it as reference in worker nodes
-    #ssh $user@$manager "docker service create --name registry --publish published=5000,target=5000 registry:2"
     token=`ssh -T -p $port $user@$manager 'docker swarm join-token worker -q'`
     echo $token #using this a global variable (DONT REMOVE)
 }

@@ -1,5 +1,10 @@
 # TCEP Demonstrator
 
+[![License](https://img.shields.io/github/license/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
+[![Issues](https://img.shields.io/github/issues/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
+[![Pulls](https://shields.beevelop.com/docker/pulls/tcep/shields.svg?style=flat-square)](https://hub.docker.com/r/mluthra/tcep/)
+[![hitCount](http://hits.dwyl.io/luthramanisha/TCEP-Demo.svg)](http://hits.dwyl.io/luthramanisha/TCEP-Demo)
+
 ## TCEP Background Information
 TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project, we: 
 * provide key interfaces to develop Operator Placement that is a prominent mechanism in CEP [2]. 
@@ -17,16 +22,16 @@ We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which 
 cd scripts/
 ```
 
-First, a so called RSpec XML file is needed in order to get a GENI cluster up and running. To automatically generate a cluster with a specified number of nodes you can execute the following command:
+First, a so called RSpec XML file is needed in order to get a GENI cluster up and running. To automatically generate this file for a cluster with a specified number of nodes you can execute the following command:
 
 ```
 python generate_geni_rspec.py {number-of-nodes} {out-directory}
 ```
 
-This will generate the "rspec.xml" file at "out-directory" with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts.
+This will generate the `rspec.xml` file at `out-directory` with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts at the project root.
 
-After you deployed the RSpec on GENI, you can download a Manifest XML file which contains information of the hosts that GENI deployed. This is useful because GENI automatically generates IP addresses for the hosts and if you created a cluster with a high amount of nodes the search for this IP addresses can be a heavy overhead.
-After downloading the manifest file you can run the following command to extract the IP addresses out of it and print out the config that can be put into the "docker-swarm.cfg" file:
+After you deployed the RSpec on GENI, you can download a Manifest XML file which contains information of the hosts that GENI deployed (View Rspec on the Jacks resources page). This is useful because GENI automatically generates IP addresses for the hosts and if you created a cluster with a high amount of nodes the search for this IP addresses can be a heavy overhead.
+After downloading the manifest file you can run the following command to extract the IP addresses out of it and generate the config `docker-swarm.cfg` file in the project root folder:
 
 ```
 python manifest_to_config.py {manifest-path}
@@ -39,10 +44,10 @@ manager=xx.xx.xx.xx
 workers=("xx.xx.xx.xx" "xx.xx.xx.xx")
 ```
 
-Now since the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command
+Now since the hosts are successfully deployed on GENI and the project is ready to be setup on the hosts. To setup the GENI instances to be able to run docker, run the following command:
 
 ```
-./publish_tceo.sh setup
+./publish_tcep.sh setup
 ```
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
