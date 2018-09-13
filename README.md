@@ -2,7 +2,6 @@
 
 [![License](https://img.shields.io/github/license/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
 [![Issues](https://img.shields.io/github/issues/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
-[![Github All Releases](https://img.shields.io/github/downloads/luthramanisha/TCEP-Demo/total.svg)]()
 [![hitCount](http://hits.dwyl.io/luthramanisha/TCEP-Demo.svg)](http://hits.dwyl.io/luthramanisha/TCEP-Demo)
 
 ## TCEP Background Information
