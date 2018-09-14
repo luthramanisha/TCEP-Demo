@@ -57,7 +57,7 @@ After the instances are all setup, you can go forward and finally run TCEP docke
 ```
 ./publish_tcep.sh all
 ```
-PS: Although focus of this demo is to show the capabilities of TCEP, however, user can modify the scripts to run any kind of application on top of Docker on GENI.
+PS: Although focus of this demo is to show the capabilities of TCEP, but the user can modify the scripts to run *any* kind of application on top of Docker on GENI.
 
 ### References:
 
