@@ -77,3 +77,7 @@ Design and Concepts: [@luthramanisha](https://github.com/luthramanisha/)
 Implementation: [@rarif](https://github.com/raq154), [@shennig](https://github.com/ocastx), [@luthramanisha](https://github.com/luthramanisha/)
 
 TCEP is build upon AdaptiveCEP language [2] that can be found [here](https://github.com/pweisenburger/AdaptiveCEP). 
+
+### Acknowledgements
+
+This work has been co-funded by the German Research Foundation (DFG) as part of the sub-project C2 within the Collaborative Research Center (CRC) 1053 -- MAKI.
