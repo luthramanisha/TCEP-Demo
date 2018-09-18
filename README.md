@@ -29,7 +29,7 @@ cd scripts/
 First, a so called RSpec XML file is needed in order to get a GENI cluster up and running. To automatically generate this file for a cluster with a specified number of nodes you can execute the following command:
 
 ```
-python generate_geni_rspec.py {number-of-nodes} {out-directory}
+python generate_specification.py {number-of-nodes} {out-directory}
 ```
 
 This will generate the `rspec.xml` file at `out-directory` with the specified number of nodes. Furthermore, this also generate the Docker swarm file "docker-stack.yml" with the correct amount of empty apps running on the GENI hosts at the project root. Refer `out/` directory to see the samples. 
