@@ -66,7 +66,7 @@ Open the webpage http://171.67.2.62:3000/ to look at the transition execution.
 
 ## Option 2
 
-### Prerequisite 
+### Prerequisites 
 * working credentials on docker hub (registry)
 * replace "registry_user" with your docker hub username
 
