@@ -63,7 +63,7 @@ After the instances are all setup, you can go forward and finally run TCEP and G
 ```
 To visualize the placement and transition execution on GENI nodes [5], please our frontend at http:<MANAGER_IP:3000> as shown below. 
 
-![TCEP-GUI on GENI](/figures/TCEP-GUI.JPG)
+![TCEP-GUI on GENI](/figures/TCEP-GUI.jpg)
 
 ### References:
 
