@@ -20,7 +20,8 @@ We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which 
 
 *Although focus of this demo is to show the capabilities of TCEP, but the user can use the scripts to run *any* kind of distributed application using our Docker container environment on GENI testbed.*
 
-To execute TCEP on GENI, please follow the below steps.
+### Prerequisites
+* GENI user account and slice
 
 ```
 cd scripts/
