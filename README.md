@@ -56,7 +56,7 @@ bash publish_tcep.sh setup
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
 
-After the instances are all setup, you can go forward and finally run TCEP and GUI docker images [4] on the hosts. We provide two modes of TCEP execution. You can either (i) pull the provided image of TCEP or (ii) build TCEP (requires docker login to build and push the image) that also enables your personalized TCEP GUI view. 
+After the instances are all setup, you can go forward and finally run TCEP and GUI docker images [4] on the hosts. We provide two modes of TCEP execution. You can either (i) pull the provided image of TCEP or (ii) build TCEP (requires docker login to build and push the image) and TCEP-GUI that also enables your personalized TCEP GUI view. 
 
 ## Option 1
 ```
@@ -73,7 +73,7 @@ Open the webpage http://171.67.2.62:3000/ to look at the transition execution.
 ```
 bash build.sh && bash publish_tcep.sh all
 ```
-To visualize the placement and transition execution on GENI nodes [5], please our frontend at http:<MANAGER_IP:3000> as shown below. 
+To visualize the placement and transition execution on GENI nodes [5], please check our frontend at http:<MANAGER_IP:3000> as shown below. 
 
 ![TCEP-GUI on GENI](/figures/TCEP-GUI.jpg)
 
