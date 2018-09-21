@@ -56,7 +56,7 @@ bash publish_tcep.sh setup
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
 
-After the instances are all setup, you can go forward and finally run TCEP and GUI docker images [4] on the hosts. We provide two modes of TCEP execution. You can either (i) pull the provided image of TCEP or (ii) build TCEP (requires docker login to build and push the image) and TCEP-GUI that also enables your personalized TCEP GUI view. 
+After the instances are all setup, you can go forward and finally run TCEP and GUI docker images [4] on the hosts. We provide two modes of TCEP execution. You can either (i) pull the provided image of TCEP or (ii) build TCEP (requires docker login to build and push the image) and TCEP-GUI docker image that also enables your personalized TCEP GUI view. 
 
 ## Option 1
 ```
