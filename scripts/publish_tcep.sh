@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Author: Manisha Luthra
+# Modified by: Sebastian Hennig
 # Description: Sets up and execute TCEP on GENI testbed
 
 work_dir="$(cd "$(dirname "$0")" ; pwd -P)/../"
@@ -26,6 +28,7 @@ take_down_swarm() {
 setup_instance() {
     echo "Setting up instance $1"
 
+    ssh -T -p $port $user@$1 "grep -q -F '127.0.0.1 $2' /etc/hosts || sudo bash -c \"echo '127.0.0.1 $2' >> /etc/hosts\""
     ssh -T -p $port $user@$1 <<-'ENDSSH'
         mkdir -p ~/src && mkdir -p ~/logs
 
@@ -82,31 +85,26 @@ init_manager() {
 }
 
 join_workers() {
-    count=1
+    count=0
     for i in "${workers[@]}"
     do
+        count=$((count+1))
         echo "processing worker $i with hostname cluster$count"
         ssh -T -p $port $user@$i "docker swarm join --token $1 $manager:2377 && sudo hostname cluster$count"
-        count=$((count+1))
     done
 }
 
 publish() {
-    printf "\nLogin required to pull images for docker manager\n"
-    ssh -t -p $port $user@$manager 'docker login'; # interactive shell to input registry credentials
-    printf "\nRemoving old docker stack\n"
-    ssh -T -p $port $user@$manager "docker rmi $registry_user/$registry_image -f"
     printf "\nPulling image from registry\n"
-    ssh -T -p $port $user@$manager "docker pull $registry_user/$registry_image && docker tag $registry_user/$registry_image tcep"
-    rm -rf $work_dir/dockerbuild
+    ssh -T -p $port $user@$manager "docker pull $registry_user/$tcep_image && docker tag $registry_user/$tcep_image tcep"
+    ssh -T -p $port $user@$manager "docker pull $registry_user/$gui_image && docker tag $registry_user/$gui_image tcep-gui"
 
-    # stop running services
+    # stop already existing services
     ssh -p $port $user@$manager <<-'ENDSSH'
     if [[ $(docker service ls -q) ]]; then # only stop services if there are any running
         docker service rm $(docker service ls -q)
     fi
 ENDSSH
-
 
     printf "\nBooting up new stack\n"
 
@@ -120,9 +118,28 @@ if [ -z $port ];
 then port=22
 fi
 
+help="
+Invalid usage
+
+Publish TCEP script
+
+Usage: ./publish_tcep.sh <COMMAND>
+
+Available COMMAND options:
+setup: Installs docker resources on every node
+publish: Publish the application on the cluster and run it
+take_down: Delete docker swarm cluster
+all: Run all steps to publish the cluster and start the application
+"
+
+if [ -z $1 ]; then
+    echo "$help"
+    exit 1
+fi
+
 if [ $1 == "publish" ]; then publish
 elif [ $1 == "setup" ]; then setup
 elif [ $1 == "all" ]; then all
 elif [ $1 == "take_down" ]; then take_down_swarm
-else echo "invalid/missing operation"
+else echo "$help"
 fi
