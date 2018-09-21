@@ -9,11 +9,7 @@ source "$work_dir/docker-swarm.cfg"
 printf "\nLogin required to push images for localhost\n"
 docker login
 
-mkdir $work_dir/dockerbuild
 printf "\nBuilding image\n"
-cp $work_dir/target/scala-2.12/tcep_2.12-0.0.1-SNAPSHOT-one-jar.jar $work_dir/dockerbuild
-cp $work_dir/Dockerfile $work_dir/dockerbuild
-cp $work_dir/docker-entrypoint.sh $work_dir/dockerbuild
 docker build -t tcep $work_dir/dockerbuild
 docker tag tcep $registry_user/$tcep_image
 printf "\nPushing image to registry\n"
