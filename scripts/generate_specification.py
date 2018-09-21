@@ -1,10 +1,29 @@
 #!/usr/bin/python
-# Description: Generates the RSpec and Docker Swarm file that are needed for execution of the simulation
 
-import sys
+# File name: generate_geni_spec.py
+# Date created: 18.07.2018
+# Python Version: 2.7
+# Description: Generates the RSpec and Docker Swarm files that are needed for execution of the simulation
+
 import os
+import sys
 
 project_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
+
+image_user = False
+image_name = False
+gui_image = False
+
+with open(os.path.join(project_root, "scripts/templates/docker-swarm.cfg")) as cfgFile:
+    for line in cfgFile:
+        name, var = line.partition("=")[::2]
+        if name == "registry_user":
+            image_user = var.rstrip()
+        elif name == "tcep_image":
+            image_name = var.rstrip()
+        elif name == "gui_image":
+            gui_image = var.rstrip()
+
 
 ####
 # CONSTANTS
@@ -13,7 +32,7 @@ ntp_container = "nserver"
 viv_container = "viv"
 master_hostname = "cluster0"
 publisher_node_count = 2
-tcep_image = "mluthra/tcep"
+tcep_image = image_user + "/" + image_name
 
 # Read GENI wrapper template
 template_file = open(os.path.join(project_root, "scripts/templates/geni_rspec.xml"), "r")
@@ -76,6 +95,16 @@ simulator_server = file.read()\
     .replace("{{hostname}}", master_hostname)
 file.close()
 
+# GUI node
+file = open(os.path.join(project_root, "scripts/templates/gui-docker.yml"), "r")
+gui_server = file.read() \
+    .replace("{{name}}", "gui") \
+    .replace("{{inport}}", "3000") \
+    .replace("{{outport}}", "3000") \
+    .replace("{{image}}", gui_image) \
+    .replace("{{hostname}}", master_hostname)
+file.close()
+
 # Emptyapp node
 file = open(os.path.join(project_root, "scripts/templates/emptyapp-docker.yml"))
 emptyapp_node = file.read()
@@ -121,7 +150,7 @@ for i in range(publisher_node_count + 1, int(sys.argv[1])):
     emptyapp_nodes += node
 
 # Concatenate all specifications and output to file
-containers = ntp_server + vivaldi_server + simulator_server + publisher_nodes + emptyapp_nodes
+containers = ntp_server + vivaldi_server + gui_server + simulator_server + publisher_nodes + emptyapp_nodes
 docker_stack = docker_stack.replace("{{containers}}", containers)
 
 file = open(sys.argv[2] + "/docker-stack-" + sys.argv[1] +  ".yml", "w")

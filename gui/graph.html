@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.link {
+  stroke: #ccc;
+}
+
+.hard-link {
+  stroke: #000;
+  width: 2px;
+} 
+
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 1400;
+var height = 700;
+const SERVER_URL = "http://171.67.2.62:3000/data"
+var fontSize = 18
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr('x', 100)
+    .attr('y', 0)
+    
+
+var force = d3.layout.force()
+    .gravity(0.022)
+    .distance(300)
+    .charge(-100)
+    .size([width, height]);
+
+d3.json(SERVER_URL, function(error, json) {
+    if (error) throw error;
+    console.log(json)
+    var links = []
+
+    json.nodes.push({name: "cluster0 (Consumer)", weight: 0.1})
+    json.nodes.push({name: "cluster1 (Producer 1)"})
+    json.nodes.push({name: "cluster2 (Producer 2)"})
+
+    // Find FilterNode
+    var filterNodeIndex = -1
+    json.nodes.forEach((n, i) => {
+        console.log(n, i)
+        if (!n.operators) {
+            return
+        }
+        n.operators.forEach(o => {
+            if (o.name.indexOf('FilterNode') !== -1) {
+                filterNodeIndex = i
+            }
+        })
+    })
+    links.push({
+        source: json.nodes[json.nodes.length-3],
+        target: filterNodeIndex,
+        hardLink: true
+    })
+
+    // Find StreamNode to connect to producers //Update based on number of stream nodes currently 2
+    var streamNodeIndex = [-1, -1]
+    var count = 0
+    json.nodes.forEach((n, i) => {
+        console.log(n, i)
+        if (!n.operators) {
+            return
+        }
+        n.operators.forEach(o => {
+            if (o.name.indexOf('StreamNode') !== -1) {
+                streamNodeIndex[count] = i
+	   count++
+            }
+        })
+    })
+    links.push({
+        source: json.nodes[json.nodes.length-2],
+        target: streamNodeIndex[0],
+        hardLink: true
+    })
+    links.push({
+        source: json.nodes[json.nodes.length-1],
+        target: streamNodeIndex[1],
+        hardLink: true
+    })
+
+    var legendX = 30
+    var legendY = 0
+    svg.append("svg:image")
+    .attr('x', legendX - 15)
+    .attr('y', legendY)
+    .attr('width', 30)
+    .attr('height', 40)
+    .attr("xlink:href", "resources/GENI.png")
+    svg.append("svg:text").text("cluster nodes: " + json.nodes.length).attr("x", legendX + 20).attr("y", legendY + 30).style("font-family", "Arial").style("font-size", fontSize).style('fill', '#666')
+    
+    svg.append("circle").attr("cx", legendX).attr("cy", legendY + 60).attr("r", 5)
+    svg.append("svg:text").text("Nodes without operators (incl. producers and consumers)").attr("x", legendX + 10).attr("y", legendY + 65).style("font-family", "Arial").style("font-size", fontSize).style('fill', '#666')
+
+    svg.append("circle").attr("cx", legendX).attr("cy", legendY + 90).attr("r", 5).attr("fill", "#3232ff")
+    svg.append("svg:text").text("Nodes with operators before transition").attr("x", legendX + 10).attr("y", legendY + 95).style("font-family", "Arial").style("font-size", fontSize).style('fill', '#666')
+    
+    svg.append("circle").attr("cx", legendX).attr("cy", legendY + 120).attr("r", 5).attr("fill", "#00cc00")
+    svg.append("svg:text").text("Nodes currently in use").attr("x", legendX + 10).attr("y", legendY + 125).style("font-family", "Arial").style("font-size", fontSize).style('fill', '#666')
+    
+    svg.append("svg:text").text("Transition mode: " + (json.transitionMode ? json.transitionMode : "MFGS")).attr("x", legendX + 10).attr("y", legendY + 155).style("font-family", "Arial").style("font-size", fontSize).style('fill', '#666')
+    
+    
+    var labelAnchors = [];
+    var labelAnchorLinks = [];
+    json.transitions.forEach((t) => {
+
+        // get index of node
+        let sourceIndex = -1
+        let targetIndex = -1
+        json.nodes.forEach((node, i) => {
+            if (node.name === t.source) {
+                sourceIndex = i
+            }
+        })
+
+        json.nodes.forEach((node, i) => {
+            console.log(node.name, t.target)
+            if (node.name === t.target) {
+                targetIndex = i
+            }
+        })
+
+        if (sourceIndex === -1 || targetIndex === -1) {
+            // No nodes for transitiont found
+            return;
+        }
+
+        links.push({
+            source: sourceIndex,
+            target: targetIndex,
+            weight: 0.1,
+            hardLink: false
+        })
+    })
+
+    force
+        .nodes(json.nodes)
+        .links(links)
+        .start();
+
+    var link = svg.selectAll(".link")
+    .data(links)
+    .enter()
+    .append("g")
+    .attr("class", "link")
+    .append("line")
+    .attr("class", function(d) { return d.value == "visible" ? "link" : ""; })
+    .style("stroke-width", function(d) { 
+        if (d.hardLink) {
+            return "5px"
+        } else {
+            return "1px"
+        }
+    });
+
+    var linkText = svg.selectAll(".link")
+    .append("text")
+    .data(force.links())
+    .text(function(d) { 
+        if (d.hardLink) {
+            return ""
+        } else {
+            return "T"
+        }
+    })
+    .attr("x", function(d) { return (d.source.x + (d.target.x - d.source.x) * 0.5); })
+    .attr("y", function(d) { return (d.source.y + (d.target.y - d.source.y) * 0.5); })
+    .attr("dy", ".25em")
+    .style("font-family", "Arial").style("font-size", fontSize).style('fill', '#000')
+
+    
+
+    var node = svg.selectAll(".node")
+        .data(json.nodes)
+        .enter().append("g")
+        .attr("class", "node")
+        .call(force.drag);
+
+    node.append("svg:circle").attr("r", 5)
+        .attr("fill", (d) => {
+            switch (d.usage) {
+                case 1: return "#00cc00"
+                case 2: return "#3232ff"
+            }
+            return "#000"
+        })
+        .attr("x", -8)
+        .attr("y", -8)
+        .attr("width", 16)
+        .attr("height", 16);
+
+
+    var addNodeTextSVG = (node, textFn) => {
+        return node.append("svg:text").text(textFn).style("fill", "#555").style("font-family", "Arial").style("font-size", fontSize).attr("x", 0)
+    }
+
+    var operatorTextFn = (index) => {
+        return function(d, i) {
+            var text = ""
+            if (d.operators && d.operators.length > index) {
+                text = d.operators[index].name.substr(0, d.operators[index].name.indexOf('-')) +  " (" + d.operators[index].algorithm + ")"
+            }
+            return text
+        }
+    }
+
+    addNodeTextSVG(node, function(d) { return d.name }).attr("dy", "2em")
+    addNodeTextSVG(node, operatorTextFn(0)).attr("dy", "3em")
+    addNodeTextSVG(node, operatorTextFn(1)).attr("dy", "4em")
+    addNodeTextSVG(node, operatorTextFn(2)).attr("dy", "5em")
+    addNodeTextSVG(node, operatorTextFn(3)).attr("dy", "6em")
+
+    force.on("tick", function() {
+        link.attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
+
+        node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+        
+        linkText
+            .attr("x", function(d) { return (d.source.x + (d.target.x - d.source.x) * 0.5); })
+            .attr("y", function(d) { return (d.source.y + (d.target.y - d.source.y) * 0.5); });
+    });
+});
+
+</script>
