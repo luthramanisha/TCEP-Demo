@@ -62,7 +62,8 @@ After the instances are all setup, you can go forward and finally run TCEP and G
 ```
 bash publish_tcep.sh all
 ```
-Open the webpage http://171.67.2.62:3000/ to look at the transition execution.
+Open the webpage http:<MANAGER_IP:3000> to look at the current transition execution. 
+Note: your execution status is maintained at our server.
 
 ## Option 2
 
@@ -73,7 +74,8 @@ Open the webpage http://171.67.2.62:3000/ to look at the transition execution.
 ```
 bash build.sh && bash publish_tcep.sh all
 ```
-To visualize the placement and transition execution on GENI nodes [5], please check our frontend at http:<MANAGER_IP:3000> as shown below. 
+In this way, you start the server at your created manager node that replies the client rgearding the nodes start up, placement in execution and transition status.
+To visualize the placement and transition execution on GENI nodes [5], please check the GUI at http:<MANAGER_IP:3000> as shown below. 
 
 ![TCEP-GUI on GENI](/figures/TCEP-GUI.jpg)
 
