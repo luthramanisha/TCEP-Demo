@@ -23,6 +23,8 @@ We provide useful scripts to enable easier evaluation of TCEP [1] on GENI which 
 ### Prerequisites
 * GENI user account and slice
 
+To execute TCEP on GENI, please follow the below steps.
+
 ```
 cd scripts/
 ```
