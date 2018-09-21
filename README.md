@@ -56,11 +56,14 @@ Now since the hosts are successfully deployed on GENI and the project is ready t
 
 Note that you maybe have to enter `yes` in the console multiple times to allow SSH connections to the hosts
 
-After the instances are all setup, you can go forward and finally run TCEP docker image [4] on the hosts by executing the following command
+After the instances are all setup, you can go forward and finally run TCEP and GUI docker images [4] on the hosts by executing the following command
 
 ```
 ./publish_tcep.sh all
 ```
+To visualize the placement and transition execution on GENI nodes [5], please our frontend at http:<MANAGER_IP:3000> as shown below. 
+
+![TCEP-GUI on GENI](/figures/TCEP-GUI.JPG)
 
 ### References:
 
@@ -73,6 +76,8 @@ http://ieeexplore.ieee.org/document/7968142/
 [3] [TCEP and TCEP-GUI Docker image](https://hub.docker.com/r/mluthra/)
 
 [4] [GENI: an open infrastructure for at-scale networking and distributed systems](https://www.geni.net/)
+
+[5] [D3 js library](https://github.com/d3/d3)
 
 ### Credits
 Design and Concepts: [@luthramanisha](https://github.com/luthramanisha/)
