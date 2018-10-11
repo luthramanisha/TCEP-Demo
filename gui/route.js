@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
-
-
 const Placement = require('./placement')
 
 router.get('/data', (req, res) => {
     const placement = Placement.getPlacement()
+    const previousPlacement = Placement.getPreviousPlacement()
     const transitions = Placement.getTransitions()
     const transitionMode = Placement.getTransitionMode()
+    const transitionTime = Placement.getTransitionTime()
     const nodes = []
+    const previousNodes = []
     for (let key in placement) {
         nodes.push({
             name: key,
@@ -16,7 +17,14 @@ router.get('/data', (req, res) => {
             usage: placement[key].usage
         })
     }
-    res.send({ nodes, transitions, transitionMode })
+    for (let key in previousPlacement) {
+        previousNodes.push({
+            name: key,
+            operators: previousPlacement[key].operators,
+            usage: previousPlacement[key].usage
+        })
+    }
+    res.send({ nodes, previousNodes, transitions, transitionMode, transitionTime })
 });
 
 router.post('/setOperator', (req, res) => {
@@ -28,6 +36,11 @@ router.post('/setMembers', (req, res) => {
     req.body.members.forEach((member) => Placement.addUpMember(member))
     res.send({})
 });
+
+router.post('/setTransitionTime', (req, res) => {
+    Placement.setTransitionTime(req.body.time)
+    res.send({})
+})
 
 router.delete('/data', (req, res) => {
     Placement.clear()
