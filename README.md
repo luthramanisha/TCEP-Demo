@@ -82,6 +82,10 @@ To visualize the placement and transition execution on GENI nodes [5], please ch
 
 ![TCEP-GUI on GENI](/figures/TCEP-GUI.jpg)
 
+## Video of the Demo
+
+[![TCEP-Demo](https://img.youtube.com/vi/lmSXhITHcYY/0.jpg)](https://www.youtube.com/watch?v=lmSXhITHcYY)
+
 ### References:
 
 [0] M. Luthra, S. Hennig, B. Koldehofe. Understanding the Behavior of Operator Placement Mechanisms on Large Scale Networks. In the Proceedings of 19th ACM/IFIP/USENIX International Middleware Conference 2018: Posters and Demos. (accepted for publication)
