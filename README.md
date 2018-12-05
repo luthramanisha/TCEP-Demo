@@ -4,6 +4,10 @@
 [![Issues](https://img.shields.io/github/issues/luthramanisha/TCEP-Demo.svg)](https://github.com/luthramanisha/TCEP-Demo)
 [![hitCount](http://hits.dwyl.io/luthramanisha/TCEP-Demo.svg)](http://hits.dwyl.io/luthramanisha/TCEP-Demo)
 
+## Video of the Demo
+
+[![TCEP-Demo](https://img.youtube.com/vi/lmSXhITHcYY/0.jpg)](https://www.youtube.com/watch?v=lmSXhITHcYY)
+
 ## TCEP Background Information
 TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project, we: 
 * provide key interfaces to develop Operator Placement that is a prominent mechanism in CEP [2]. 
@@ -82,9 +86,6 @@ To visualize the placement and transition execution on GENI nodes [5], please ch
 
 ![TCEP-GUI on GENI](/figures/TCEP-GUI.jpg)
 
-## Video of the Demo
-
-[![TCEP-Demo](https://img.youtube.com/vi/lmSXhITHcYY/0.jpg)](https://www.youtube.com/watch?v=lmSXhITHcYY)
 
 ### References:
 
