@@ -6,7 +6,7 @@
 
 ## Video of the Demo
 
-[![TCEP-Demo](https://img.youtube.com/vi/lmSXhITHcYY/0.jpg)](https://www.youtube.com/watch?v=lmSXhITHcYY)
+[![TCEP-Demo](https://img.youtube.com/vi/ICVTkCRASck/0.jpg)](https://www.youtube.com/watch?v=ICVTkCRASck)
 
 ## TCEP Background Information
 TCEP: Transition-capable Complex Event Processing is a research project that provides abstractions to develop an adaptive Complex Event Processing (CEP) system [1]. In this project, we: 
