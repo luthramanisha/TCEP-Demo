@@ -1,4 +1,4 @@
-*Please visit the TCEP source code [here](https://github.com/luthramanisha/TCEP) which is continuously updated. This repository provides an older demonstration of TCEP*
+*Please visit the TCEP source code [here](https://github.com/luthramanisha/TCEP) which is continuously updated. This repository provides an older demonstration of TCEP.*
 
 # TCEP Demonstrator
 
